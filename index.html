@@ -28,7 +28,8 @@
       animation: beat 1s infinite;
     }
     @keyframes beat {
-      0%,100%{transform:scale(1);}50%{transform:scale(1.3);}    }
+      0%,100%{transform:scale(1);}50%{transform:scale(1.3);}
+    }
     .loading-bar {
       width: 220px;
       height: 12px;
@@ -38,13 +39,14 @@
       margin: 15px 0;
     }
     .loading-progress {
-      width: 100%;
       height: 100%;
+      width: 0%;
       background: white;
-      animation: load 2s infinite;
     }
-    @keyframes load {
-      from{transform:translateX(-100%);}to{transform:translateX(100%);}    }
+    #loader p {
+      margin: 10px 0;
+      font-size: 20px;
+    }
     button {
       padding: 12px 30px;
       font-size: 18px;
@@ -71,11 +73,11 @@
     }
   </style>
 </head>
-<body>  <!-- หน้าโหลด (หน้าแรกสุด) -->  <div id="loader" class="page">
+<body>  <!-- หน้าโหลด -->  <div id="loader" class="page">
     <div class="heart">💗</div>
     <p>กำลังโหลด</p>
-    <div class="loading-bar"><div class="loading-progress"></div></div>
-    <button onclick="showFirst()">ต่อไป</button>
+    <div class="loading-bar"><div class="loading-progress" id="progress"></div></div>
+    <button id="nextBtn" style="display:none;" onclick="showFirst()">ต่อไป</button>
   </div>  <!-- หน้า Happy Valentine -->  <div id="firstPage" class="page">
     <h1>Happy Valentine’s Day 💖</h1>
     <button onclick="showMain()">ต่อไป</button>
@@ -100,6 +102,7 @@
     function hideAll() {
       document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
     }
+
     function yesClick() {
       document.getElementById('box').innerHTML = `
         <h2>อื้ยยยยย ว่าาแล้วต้องคนนี้ 🩷</h2>
@@ -117,6 +120,20 @@
 
     // เริ่มที่หน้าโหลด
     hideAll();
-    document.getElementById('loader').style.display = 'flex';
+    const loader = document.getElementById('loader');
+    loader.style.display = 'flex';
+
+    // โหลด 0-100%
+    let progress = document.getElementById('progress');
+    let nextBtn = document.getElementById('nextBtn');
+    let width = 0;
+    let interval = setInterval(() => {
+      width++;
+      progress.style.width = width + '%';
+      if(width >= 100){
+        clearInterval(interval);
+        nextBtn.style.display = 'inline-block';
+      }
+    }, 20); // 20ms x 100 = 2 วิ
   </script></body>
 </html>
