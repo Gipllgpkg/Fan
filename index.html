@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Valentine's Day 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 350px;
+    }
+    h1 {
+      color: #ff4d6d;
+    }
+    p {
+      font-size: 18px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+    #no {
+      background-color: #ccc;
+    }
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: white;
+      font-size: 20px;
+    }
+    #nextBtn {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      background: white;
+      color: #ff4d6d;
+      cursor: pointer;
+    }
+    .heart {
+      font-size: 60px;
+      animation: beat 1s infinite;
+    }
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+    .loading-bar {
+      width: 220px;
+      height: 12px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+    .loading-progress {
+      height: 100%;
+      width: 0%;
+      background: white;
+      border-radius: 20px;
+      animation: load 2s ease-in-out forwards;
+    }
+    @keyframes load {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+      50% { transform: scale(1.3); }
+    }
+  #firstPage {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+    #firstPage h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    #firstPage button {
+      padding: 12px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #ff4d6d;
+      cursor: pointer;
+    }
+</style>
+</head>
+<body>
+  <!-- หน้าโหลด (หน้าแรกสุด) -->
+  <div id="loader">
+    <div class="heart">💗</div>
+    <p>กำลังโหลด</p>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+    <button id="nextBtn" onclick="goToFirst()">ต่อไป</button>
+  </div>  <!-- หน้าแรก Happy Valentine -->  <div id="firstPage" style="display:none;">
+    <h1>Happy Valentine’s Day 💖</h1>
+    <button onclick="goToMain()">ต่อไป</button>
+  </div>  <!-- หน้าหลัก -->  <div id="loader" style="display:none;">
+    <div class="heart">💗</div>
+    <p>กำลังโหลด</p>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+    <button id="nextBtn" onclick="goNext()">ต่อไป</button>
+  </div>
+    <p>กำลังโหลดความรู้สึกดีๆ อยู่เลย…</p>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+  </div>  <div id="loader">
+    <div class="heart">💗</div>
+    <p>กำลังโหลดความรู้สึกดีๆ อยู่เลย…</p>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+  </div>
+    <p>กำลังโหลดความรู้สึกดีๆ อยู่เลย…</p>
+  </div>  <div class="card" id="card" style="display:none;" style="display:none;">
+    <h1>Happy Valentine's Day 💝</h1>
+    <p>เราคุยกันมาสักพักแล้ว…<br>ขอเป็นแฟนกันได้ไหม 💕</p>
+    <button id="yes" onclick="yesClick()">เป็น</button>
+    <button id="no" onclick="noClick()">ไม่เป็น</button>
+  </div>  <script>
+    function goToFirst() {
+      document.getElementById('loader').style.display = 'none';
+      document.getElementById('firstPage').style.display = 'flex';
+    }
+    function goToMain() {
+      document.getElementById('firstPage').style.display = 'none';
+      document.getElementById('card').style.display = 'block';
+    }
+    function goNext() {
+      document.getElementById('loader').style.display = 'none';
+      document.getElementById('card').style.display = 'block';
+    }, 2000);
+    }, 2000);
+    }
+    let noCount = 0;
+    function yesClick() {
+      document.getElementById('card').innerHTML = `
+        <h1>อื้ยยยยย ว่าาแล้วต้องคนนี้ 💕</h1>
+        <p>ขอบคุณที่เข้าในชีวิตน่ะคุณแฟน 🩷🩷</p>
+      `;
+    }
+    function noClick() {
+      noCount++;
+      const yesBtn = document.getElementById('yes');
+      let size = 18 + noCount * 4;
+      yesBtn.style.fontSize = size + 'px';
+      if (noCount >= 5) {
+        document.getElementById('card').innerHTML = `
+          <h1>คงยังไม่ใช่สินะ 😔</h1>
+          <p>เราขอโทษน่ะ 🥺</p>
+        `;
+      }
+    }
+    }
+  </script></body>
+</html>
