@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="th">
+<!DOCTYPE html>
+<html lang="th">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +9,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
     }
+
     .page {
       position: fixed;
       inset: 0;
@@ -17,19 +19,24 @@
       flex-direction: column;
       text-align: center;
     }
+
     /* หน้าโหลด */
     #loader {
       display: flex;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       color: white;
     }
+
     .heart {
       font-size: 60px;
       animation: beat 1s infinite;
     }
+
     @keyframes beat {
-      0%,100%{transform:scale(1);}50%{transform:scale(1.3);}
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.3);}
     }
+
     .loading-bar {
       width: 220px;
       height: 12px;
@@ -38,84 +45,75 @@
       overflow: hidden;
       margin: 15px 0;
     }
+
     .loading-progress {
       height: 100%;
       width: 0%;
       background: white;
     }
-    #loader p {
-      margin: 10px 0;
-      font-size: 20px;
-    }
+
     button {
       padding: 12px 30px;
       font-size: 18px;
       border: none;
       border-radius: 30px;
       cursor: pointer;
+      margin-top: 20px;
     }
-    /* หน้า Happy Valentine */
+
+    /* หน้า 2 */
     #firstPage {
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
       color: white;
     }
-    /* หน้าขอเป็นแฟน */
-    #card {
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      color: #333;
-    }
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 320px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    /* หน้า 3 */
+    #thirdPage {
+      background: linear-gradient(135deg, #ff9a9e, #ffdde1);
+      color: #fff;
+      font-size: 22px;
+      padding: 20px;
     }
   </style>
 </head>
-<body>  <!-- หน้าโหลด -->  <div id="loader" class="page">
+
+<body>
+
+  <!-- หน้าโหลด -->
+  <div id="loader" class="page">
     <div class="heart">💗</div>
     <p>กำลังโหลด</p>
-    <div class="loading-bar"><div class="loading-progress" id="progress"></div></div>
-    <button id="nextBtn" style="display:none;" onclick="showFirst()">ต่อไป</button>
-  </div>  <!-- หน้า Happy Valentine -->  <div id="firstPage" class="page">
-    <h1>Happy Valentine’s Day 💖</h1>
-    <button onclick="showMain()">ต่อไป</button>
-  </div>  <!-- หน้าขอเป็นแฟน -->  <div id="card" class="page">
-    <div class="box" id="box">
-      <h2>เราคุยกันมาสักพักแล้ว</h2>
-      <p>ขอเป็นแฟนกันได้ไหม 💕</p>
-      <button id="yes" onclick="yesClick()">เป็น</button>
-      <button id="no" onclick="noClick()">ไม่เป็น</button>
+    <div class="loading-bar">
+      <div class="loading-progress" id="progress"></div>
     </div>
-  </div>  <script>
-    let noCount = 0;
+    <button id="nextBtn" style="display:none;" onclick="showFirst()">ต่อไป</button>
+  </div>
 
+  <!-- หน้า 2 -->
+  <div id="firstPage" class="page">
+    <h1>Happy Valentine’s Day 💖</h1>
+    <button onclick="showThird()">ต่อไป</button>
+  </div>
+
+  <!-- หน้า 3 -->
+  <div id="thirdPage" class="page">
+    <h2>ขอบคุณที่เข้ามาในชีวิตน่ะ 💝</h2>
+    <p>รักเธอที่สุดในโลก 💖</p>
+  </div>
+
+  <script>
     function showFirst() {
       hideAll();
       document.getElementById('firstPage').style.display = 'flex';
     }
-    function showMain() {
+
+    function showThird() {
       hideAll();
-      document.getElementById('card').style.display = 'flex';
-    }
-    function hideAll() {
-      document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+      document.getElementById('thirdPage').style.display = 'flex';
     }
 
-    function yesClick() {
-      document.getElementById('box').innerHTML = `
-        <h2>อื้ยยยยย ว่าาแล้วต้องคนนี้ 🩷</h2>
-        <p>ขอบคุณที่เข้าในชีวิตน่ะคุณแฟน 🩷🩷</p>`;
-    }
-    function noClick() {
-      noCount++;
-      document.getElementById('yes').style.fontSize = (18 + noCount * 4) + 'px';
-      if (noCount >= 5) {
-        document.getElementById('box').innerHTML = `
-          <h2>คงยังไม่ใช่สินะ 😔</h2>
-          <p>เราขอโทษน่ะ 🥺</p>`;
-      }
+    function hideAll() {
+      document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
     }
 
     // เริ่มที่หน้าโหลด
@@ -127,13 +125,17 @@
     let progress = document.getElementById('progress');
     let nextBtn = document.getElementById('nextBtn');
     let width = 0;
+
     let interval = setInterval(() => {
       width++;
       progress.style.width = width + '%';
+
       if(width >= 100){
         clearInterval(interval);
         nextBtn.style.display = 'inline-block';
       }
-    }, 20); // 20ms x 100 = 2 วิ
-  </script></body>
+    }, 20);
+  </script>
+
+</body>
 </html>
